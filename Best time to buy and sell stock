@@ -1,0 +1,12 @@
+***********code studio**********
+def maximumProfit(prices):
+    ans=10**9+1
+    n=len(prices)
+    val=0
+    for i in range(n):
+        if prices[i]<ans:
+            ans=prices[i]
+        else:
+            mp=prices[i]-ans
+            val=max(val,mp)
+    return val
