@@ -1,0 +1,30 @@
+***********code studio cycle detection in a undirected graph*******
+def cycleDetection(edges, n, m):
+    adj=[[] for i in range(n+1)]
+    for it in edges:
+        u=it[0]
+        v=it[1]
+        adj[u].append(v)
+        adj[v].append(u)
+    visited=[False for i in range(n+1)]
+    def dfs(i,ind,adj,visited):
+        visited[i]=True
+        for it in adj[i]:
+            if not visited[it]:
+                if dfs(it,i,adj,visited):
+                    return True
+            elif it!=ind:
+                return True
+        return False
+    flag=0
+    for i in range(1,n+1):
+        if not visited[i]:
+            if dfs(i,-1,adj,visited):
+                flag=1
+    if flag==1:
+        return "Yes"
+    else:
+        return "No"
+
+
+    pass
