@@ -1,0 +1,23 @@
+def findIslands(mat, n, m):
+	visited=[[False for j in range(m)] for i in range(n)]
+	def dfs(i,j,visited):
+		if i<0 or j<0 or i>=n or j>=m or visited[i][j] or mat[i][j]==0:
+			return 
+		visited[i][j]=True
+		dfs(i-1,j,visited)
+		dfs(i-1,j+1,visited)
+		dfs(i,j+1,visited)
+		dfs(i+1,j+1,visited)
+		dfs(i+1,j,visited)
+		dfs(i+1,j-1,visited)
+		dfs(i,j-1,visited)
+		dfs(i-1,j-1,visited)
+	count=0
+	for i in range(n):
+		for j in range(m):
+			if not visited[i][j]:
+				if mat[i][j]==1:
+					count+=1
+					dfs(i,j,visited)
+	return count
+	
