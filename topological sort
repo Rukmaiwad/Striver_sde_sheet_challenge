@@ -1,0 +1,33 @@
+***********code studio*********
+from collections import deque
+
+
+def topologicalSort(adj, v, e):
+    toposort=[]
+    q=deque()
+    indeg=[0 for i in range(v)]
+    graph=[[] for i in range(v)]
+    for i in range(e):
+        u,v=adj[i]
+        graph[u].append(v)
+        indeg[v]+=1
+        
+            
+    #print(indeg)
+    for i in range(len(indeg)):
+        if indeg[i]==0:
+            q.append(i)
+
+    while q:
+        node=q.popleft()
+        toposort.append(node)
+        for it in graph[node]:
+            indeg[it]-=1
+            if indeg[it]==0:
+                q.append(it)
+    #print(toposort)
+    return toposort
+
+   
+
+    pass
