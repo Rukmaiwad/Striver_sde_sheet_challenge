@@ -1,0 +1,19 @@
+import sys
+sys.setrecursionlimit(10**7)
+
+def modularExponentiation(x, n, m):
+	
+	
+	def power(x,n):
+		if n==0:
+			return 1
+		hp=power(x,n//2)
+		sp=(hp%m*hp%m)%m
+		if n%2==0:
+			return sp%m
+		else:
+			return (sp%m*x%m)%m
+	ans=power(x,n)
+	return ans
+		
+	
