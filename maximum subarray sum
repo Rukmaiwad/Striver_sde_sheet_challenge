@@ -1,0 +1,15 @@
+from sys import stdin,setrecursionlimit
+setrecursionlimit(10**7)
+
+def maxSubarraySum(arr, n) :
+    sum1=0
+    maxi=0
+    for i in range(n):
+        sum1+=arr[i]
+        if sum1>maxi:
+            maxi=sum1
+        elif sum1<0:
+            sum1=0
+    return maxi
+
+	
