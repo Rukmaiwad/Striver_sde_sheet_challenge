@@ -1,0 +1,37 @@
+from math import *
+from collections import *
+from sys import *
+from os import *
+import heapq
+
+
+def lengthOfLongestConsecutiveSequence(arr, n):
+    if n==0:
+        return 0
+    if n==1:
+        return 1
+    res=[]
+    for i in range(n):
+        #pq.put(arr[i])
+        heapq.heappush(res,arr[i])
+    #min1=pq.get()
+    min1=heapq.heappop(res)
+    count=1
+    ans=1
+    for i in range(n-1):
+        #min2=pq.get()
+        min2=heapq.heappop(res)
+        if min1+1==min2:
+            count+=1
+            min1=min2
+            ans=max(ans,count)
+        elif min1==min2:
+            ans=max(ans,count)
+        else:
+            count=1
+            min1=min2
+            ans=max(ans,count)
+    return ans
+
+    
+    pass
