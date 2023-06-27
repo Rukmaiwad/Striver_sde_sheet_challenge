@@ -1,0 +1,35 @@
+'''
+Following is the structure of the Node class already defined.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+'''
+
+def removeKthNode(head, k):
+    if head is None:
+        return None
+    cnt=0
+    cur=head
+    while cur:
+        cnt+=1
+        cur=cur.next
+    if cnt==k:
+        return head.next
+    else:
+        slow=head
+        fast=head
+        for i in range(k):
+            if fast is None:
+                break
+            fast=fast.next
+        if fast is None:
+            return None
+        while fast.next!=None:
+            slow=slow.next
+            fast=fast.next
+        slow.next=slow.next.next
+        return head
+    pass
