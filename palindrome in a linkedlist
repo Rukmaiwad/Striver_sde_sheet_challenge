@@ -1,0 +1,86 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from sys import stdin
+
+#Following is the class structure of the LinkedListNode class:
+class Node:
+    def __init__(self,data):
+        
+        self.data = data
+        self.next = None
+            
+            
+def isPalindrome(head):
+    if head is None :
+        return True
+        
+    if  head.next is None:
+        return True
+    slow=head
+    fast=head
+    while fast.next and fast.next.next:
+        slow=slow.next
+        fast=fast.next.next
+    temp=slow.next
+    node=None
+    
+    while temp:
+        cur=temp.next
+        temp.next=node
+        node=temp
+        temp=cur
+        
+    cur1=node
+    cur2=head
+    while cur1 and cur2:
+        if cur1.data!=cur2.data:
+            return False
+        cur1=cur1.next
+        cur2=cur2.next
+    return True
+
+    
+   
+    pass    
+    
+    
+def takeinput():
+    
+    inputlist=[int(ele) for ele in input().split()]
+    
+    head=None
+    tail=None
+    
+    for currentData in inputlist:
+        
+        if currentData == -1:
+            break
+        
+        Newnode=Node(currentData)
+        
+        if head is None:
+            head=Newnode
+            tail=Newnode
+        else:
+            tail.next=Newnode
+            tail=Newnode
+            
+    return head
+
+
+#Main
+t = int(stdin.readline().rstrip())
+
+while t > 0:
+    
+    head = takeinput()
+    
+    if isPalindrome(head):
+        print('true')
+    else:
+        print('false')
+        
+    t -= 1
